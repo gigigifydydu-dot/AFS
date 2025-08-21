@@ -8,7 +8,7 @@ local ListPets = {}
 local REP = game:GetService("ReplicatedStorage")
 local RemoteFolder = REP:WaitForChild("Remote")
 
-local SendPetEvent = RemoteFolder:WaitForChild("SendPetEvent")
+local SendPetEvent = RemoteFolder:WaitForChild("SendPet")
 
 function GetAllPets()
 	for index, value in ipairs(player:FindFirstChild("Pets")) do
