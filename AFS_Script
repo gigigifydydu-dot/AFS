@@ -6,7 +6,7 @@ local HumanoidRootPartChar = char:WaitForChild("HumanoidRootPart")
 local ID_NAME = player.Name
 local ID_WORLD = player:WaitForChild("World").Value
 
-local ListPets = {}
+local ChoseTargetWorld = "All"
 
 local REP = game:GetService("ReplicatedStorage")
 local RemoteFolder = REP:WaitForChild("Remote")
@@ -78,15 +78,23 @@ local AutoAttack = Tab:CreateToggle({
 		while Value == true do
 			wait(0.2)
 			if #TargetWorldEnemy:GetChildren() == 0 then
-    			continue
+				if Value == true then
+					continue
+				else
+					return
+				end
 			end
 			if Target and Target.Parent then
-				continue
+				if Value == true then
+					continue
+				else
+					return
+				end
 			else
 				Target = nil
 			end
 			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
-				if enemy.Name == "FriezaBoss" then
+				if enemy.Name == ChoseTargetWorld or ChoseTargetWorld == "All" then
 					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
 					print(distance)
 					if distance < 100 then
@@ -105,12 +113,13 @@ local AutoAttack = Tab:CreateToggle({
 local ChoseTarget = Tab:CreateDropdown({
    Name = "Chose Enemy",
    Options = {},
-   CurrentOption = {},
+   CurrentOption = {"All"},
    MultipleOptions = false,
    Flag = "ChoseTarget", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Options)
    -- The function that takes place when the selected option is changed
    -- The variable (Options) is a table of strings for the current selected options
+		ChoseTargetWorld = Options
    end,
 })
 
@@ -118,6 +127,12 @@ local RefreshTargetList = Tab:CreateButton({
    Name = "Refresh Target List",
    Callback = function()
    -- The function that takes place when the button is pressed
+		local EnemyList = {}
+		table.insert(EnemyList, "All")
+		for index, enemy in ipairs(TargetWorldEnemy:GetChildren()) do
+			table.insert(EnemyList, enemy.Name)
+		end
+		ChoseTarget:Refresh(EnemyList) -- The new list of options
    end,
 })
 
