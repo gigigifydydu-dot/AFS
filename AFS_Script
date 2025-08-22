@@ -58,6 +58,7 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("Main", "brain")
 
+local Target = nil
 local AutoAttack = Tab:CreateToggle({
    Name = "Auto Attack",
    CurrentValue = false,
@@ -68,7 +69,6 @@ local AutoAttack = Tab:CreateToggle({
 		while Value == true do
 			wait()
 			if #TargetWorldEnemy:GetChildren() == 0 then
-				print("NO TARGET")
 				if Value == true then
 					continue
 				else
@@ -76,19 +76,25 @@ local AutoAttack = Tab:CreateToggle({
 				end
 			end
 
+            if Target ~= nil then
+                if Target.Health.Value <= 0 then
+                    Target == nil
+                end
+                if Value == true then
+                    continue
+                else
+                    return
+                end
+            end
+
 			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
-				if enemy.Name == ChoseTargetWorld or ChoseTargetWorld == "All" then
+				if enemy.Name == ChoseTargetWorld or ChoseTargetWorld == "All" and enemy.Health.Value > 0 then
 					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
-					print(distance)
-					if distance < 100 then
+					if distance < 150 then
 						for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
 							SendPetBindable:Fire(enemy)
 							SendPetEvent:FireServer(Pet.Value, enemy, i)
 						end
-						
-						repeat
-							wait()
-						until enemy == nil or enemy.Parent == nil
 					end
 				end
 			end
