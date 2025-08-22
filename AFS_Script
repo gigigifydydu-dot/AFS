@@ -92,6 +92,7 @@ local Toggle = Tab:CreateToggle({
 						Target = enemy
 						for i=1, #ListPets do
 							print(ListPets[i].Name)
+							print(i)
 							SendPetEvent:FireServer(ListPets[i], enemy, i)
 						end
 						print(Target.Name)
