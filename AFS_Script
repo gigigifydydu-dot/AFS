@@ -81,8 +81,10 @@ local Toggle = Tab:CreateToggle({
 			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
 				if enemy.Name == "FriezaBoss" then
 					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
+					print(distance)
 					if distance < 10 then
 						SendPetBindable:Fire(enemy)
+						print("call")
 					end
 				end
 			end
