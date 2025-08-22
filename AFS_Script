@@ -81,6 +81,7 @@ local Toggle = Tab:CreateToggle({
     			return
 			end
 			if Target and Target.Parent then
+				print("CAJIREJGOIEJ")
 				return
 			else
 				Target = nil
