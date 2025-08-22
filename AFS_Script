@@ -7,8 +7,10 @@ local ListPets = {}
 
 local REP = game:GetService("ReplicatedStorage")
 local RemoteFolder = REP:WaitForChild("Remote")
+local BindableFolder = REP:WaitForChild("Bindable")
 
 local SendPetEvent = RemoteFolder:WaitForChild("SendPet")
+local SendPetBindable = RemoteFolder:WaitForChild("SendPet")
 
 function GetAllPets()
 	for index, value in pairs(player:FindFirstChild("Pets"):GetChildren()) do
@@ -58,3 +60,18 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Tab = Window:CreateTab("Main", "brain")
+
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Attack",
+   CurrentValue = false,
+   Flag = "Auto_Attack", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+		while Value do
+			for i, enemy in pairs(game.Workspace.Worlds:FindFirstChild(ID_WORLD):GetChildren()) do
+				print("update")
+			end
+		end
+   end,
+})
