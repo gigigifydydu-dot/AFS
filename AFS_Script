@@ -19,6 +19,7 @@ local TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(ID_WORLD).Enemies
 
 function GetAllPets()
 	for index, value in pairs(player:FindFirstChild("Pets"):GetChildren()) do
+		print(value.Name)
 		table.insert(ListPets, value)
 	end
 	print(ListPets)
@@ -90,9 +91,9 @@ local Toggle = Tab:CreateToggle({
 					print(distance)
 					if distance < 10 then
 						Target = enemy
-						print(ListPets[i].Value.Data.Owner.Value)
-						for i=1, #ListPets do
-							SendPetEvent:FireServer(ListPets[i].Value, enemy, i)
+						for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
+							print(Pet.Value.Data.Owner.Value)
+							SendPetEvent:FireServer(Pet.Value, enemy, i)
 						end
 					end
 				end
