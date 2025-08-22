@@ -69,6 +69,7 @@ local AutoAttack = Tab:CreateToggle({
 		while Value == true do
 			wait(0.2)
 			if #TargetWorldEnemy:GetChildren() == 0 then
+				print("NO TARGET")
 				if Value == true then
 					continue
 				else
