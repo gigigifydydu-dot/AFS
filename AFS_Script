@@ -76,7 +76,7 @@ local AutoAttack = Tab:CreateToggle({
 				end
 			end
 
-            if Target.Parent then
+            if Target and Target.Parent then
                 if Value == true then
                     continue
                 else
@@ -90,6 +90,7 @@ local AutoAttack = Tab:CreateToggle({
 				if enemy.Name == ChoseTargetWorld or ChoseTargetWorld == "All" and enemy.Parent ~= nil then
 					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
 					if distance < 150 then
+                        Target = enemy.HumanoidRootPart
 						for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
 							SendPetBindable:Fire(enemy)
 							SendPetEvent:FireServer(Pet.Value, enemy, i)
