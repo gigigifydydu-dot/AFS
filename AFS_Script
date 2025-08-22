@@ -2,6 +2,7 @@ print("Debug")
 
 local player = game.Players.LocalPlayer
 local ID_NAME = player.Name
+local ID_WORLD = player:WaitForChild("World").Value
 
 local ListPets = {}
 
@@ -11,6 +12,8 @@ local BindableFolder = REP:WaitForChild("Bindable")
 
 local SendPetEvent = RemoteFolder:WaitForChild("SendPet")
 local SendPetBindable = RemoteFolder:WaitForChild("SendPet")
+
+local TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(ID_WORLD).Enemies
 
 function GetAllPets()
 	for index, value in pairs(player:FindFirstChild("Pets"):GetChildren()) do
@@ -69,8 +72,11 @@ local Toggle = Tab:CreateToggle({
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
 		while Value do
-			for i, enemy in pairs(game.Workspace.Worlds:FindFirstChild(ID_WORLD):GetChildren()) do
-				print("update")
+			if #TargetWorldEnemy:GetChildren() == 0 then
+    			return
+			end
+			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
+				print(enemy.Name)
 			end
 		end
    end,
