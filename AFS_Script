@@ -112,7 +112,7 @@ local Toggle = Tab:CreateToggle({
 		while Value == true do
 			wait(1)
 			for index, value in pairs(game.Workspace.Effects:GetChildren()) do
-				if value:FindFirstChild("Coin") or value:FindFirstChild("Fruit") or value.Name == "TowerShard" then
+				if value:FindFirstChild("Coin") or value:FindFirstChild("Fruit") or value.Name == "TowerShard" or value.Name == "GenericItem" then
 					value:SetPrimaryPartCFrame(HumanoidRootPartChar.CFrame)
 				end
 			end
