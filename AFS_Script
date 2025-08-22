@@ -68,7 +68,7 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("Main", "brain")
 local Target = nil
 
-local Toggle = Tab:CreateToggle({
+local AutoAttack = Tab:CreateToggle({
    Name = "Auto Attack",
    CurrentValue = false,
    Flag = "Auto_Attack", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -102,7 +102,26 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 
-local Toggle = Tab:CreateToggle({
+local ChoseTarget = Tab:CreateDropdown({
+   Name = "Chose Enemy",
+   Options = {},
+   CurrentOption = {},
+   MultipleOptions = false,
+   Flag = "ChoseTarget", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Options)
+   -- The function that takes place when the selected option is changed
+   -- The variable (Options) is a table of strings for the current selected options
+   end,
+})
+
+local RefreshTargetList = Tab:CreateButton({
+   Name = "Refresh Target List",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local CollectCoins = Tab:CreateToggle({
    Name = "Collect Coins (Fruits And Shards)",
    CurrentValue = false,
    Flag = "Collect_Coins", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
