@@ -76,16 +76,14 @@ local Toggle = Tab:CreateToggle({
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
 		while Value == true do
-			task.wait(1)
+			wait(0.2)
 			if #TargetWorldEnemy:GetChildren() == 0 then
-    			return
+    			continue
 			end
 			if Target and Target.Parent then
-				print("CAJIREJGOIEJ")
-				return
+				continue
 			else
 				Target = nil
-				print("BADONIL")
 			end
 			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
 				if enemy.Name == "FriezaBoss" then
