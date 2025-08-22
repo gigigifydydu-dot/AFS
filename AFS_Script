@@ -85,9 +85,9 @@ local Toggle = Tab:CreateToggle({
 					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
 					print(distance)
 					if distance < 10 then
-						--for i=1, #ListPets do
-						--end
-						SendPetBindable:Fire(enemy)
+						for i=1, #ListPets do
+							SendPetEvent:FireServer(ListPets[i], enemy, i)
+						end
 					end
 				end
 			end
