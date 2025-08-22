@@ -92,7 +92,7 @@ local Toggle = Tab:CreateToggle({
 					if distance < 10 then
 						Target = enemy
 						for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
-							print(Pet.Value.Data.Owner.Value)
+							SendPetBindable:Fire(enemy)
 							SendPetEvent:FireServer(Pet.Value, enemy, i)
 						end
 					end
