@@ -1,6 +1,8 @@
 print("Debug")
 
 local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local HumanoidRootPartChar = char:WaitForChild("HumanoidRootPart")
 local ID_NAME = player.Name
 local ID_WORLD = player:WaitForChild("World").Value
 
@@ -71,13 +73,18 @@ local Toggle = Tab:CreateToggle({
    Callback = function(Value)
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
-		while Value do
+		while Value == true do
 			task.wait(1)
 			if #TargetWorldEnemy:GetChildren() == 0 then
     			return
 			end
 			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
-				print(enemy.Name)
+				if enemy.Name == "FriezaBoss" then
+					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
+					if distance < 10 then
+						SendPetBindable:Fire(enemy)
+					end
+				end
 			end
 		end
    end,
