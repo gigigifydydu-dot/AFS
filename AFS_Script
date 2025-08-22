@@ -65,6 +65,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Tab = Window:CreateTab("Main", "brain")
+local Target = nil
 
 local Toggle = Tab:CreateToggle({
    Name = "Auto Attack",
@@ -75,16 +76,20 @@ local Toggle = Tab:CreateToggle({
    -- The variable (Value) is a boolean on whether the toggle is true or false
 		while Value == true do
 			task.wait(1)
-			print("LOOP")
 			if #TargetWorldEnemy:GetChildren() == 0 then
     			return
 			end
+			if Target and Target.Parent then
+				return
+			else
+				Target = nil
+			end
 			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
 				if enemy.Name == "FriezaBoss" then
-					print("hsguioshrgoihrteoshjoertj")
 					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
 					print(distance)
 					if distance < 10 then
+						Target = enemy
 						for i=1, #ListPets do
 							SendPetEvent:FireServer(ListPets[i], enemy, i)
 						end
