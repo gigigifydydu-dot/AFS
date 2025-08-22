@@ -72,6 +72,7 @@ local Toggle = Tab:CreateToggle({
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
 		while Value do
+			task.wait(1)
 			if #TargetWorldEnemy:GetChildren() == 0 then
     			return
 			end
