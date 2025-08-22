@@ -90,6 +90,7 @@ local Toggle = Tab:CreateToggle({
 					print(distance)
 					if distance < 10 then
 						Target = enemy
+						print(ListPets[i].Data.Owner.Value)
 						for i=1, #ListPets do
 							SendPetEvent:FireServer(ListPets[i], enemy, i)
 						end
