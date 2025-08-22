@@ -17,15 +17,6 @@ local SendPetBindable = BindableFolder:WaitForChild("SendPet")
 
 local TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(ID_WORLD).Enemies
 
-function GetAllPets()
-	for index, value in pairs(player:FindFirstChild("Pets"):GetChildren()) do
-		print(value.Name)
-		table.insert(ListPets, value)
-	end
-	print(ListPets)
-end
-GetAllPets()
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
