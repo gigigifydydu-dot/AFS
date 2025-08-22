@@ -88,7 +88,7 @@ local AutoAttack = Tab:CreateToggle({
 						
 						repeat
 							wait()
-						until enemy.Health.Value <= 0
+						until enemy == nil or enemy.Parent == nil
 					end
 				end
 			end
