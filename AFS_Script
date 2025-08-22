@@ -13,7 +13,7 @@ local RemoteFolder = REP:WaitForChild("Remote")
 local BindableFolder = REP:WaitForChild("Bindable")
 
 local SendPetEvent = RemoteFolder:WaitForChild("SendPet")
-local SendPetBindable = RemoteFolder:WaitForChild("SendPet")
+local SendPetBindable = BindableFolder:WaitForChild("SendPet")
 
 local TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(ID_WORLD).Enemies
 
@@ -85,8 +85,9 @@ local Toggle = Tab:CreateToggle({
 					local distance = (HumanoidRootPartChar.Position - enemy.HumanoidRootPart.Position).Magnitude
 					print(distance)
 					if distance < 10 then
+						--for i=1, #ListPets do
+						--end
 						SendPetBindable:Fire(enemy)
-						print("call")
 					end
 				end
 			end
