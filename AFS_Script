@@ -108,7 +108,7 @@ local Toggle = Tab:CreateToggle({
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
 		while Value == true do
-			wait(3)
+			wait(1)
 			for index, value in pairs(game.Workspace.Effects:GetChildren()) do
 				if value.Name == "Yen" then
 					value:SetPrimaryPartCFrame(HumanoidRootPartChar.CFrame)
