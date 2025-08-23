@@ -69,21 +69,17 @@ local AutoAttack = Tab:CreateToggle({
 		while ToggleAutoAttack == true do
 			wait(0.1)
 			TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(player:WaitForChild("World").Value).Enemies
-			if #TargetWorldEnemy:GetChildren() == 0 then
-				if ToggleAutoAttack == true then
-					continue
-				else
-					return
-				end
+			if #TargetWorldEnemy:GetChildren() == 0 and ToggleAutoAttack == true then
+				continue
+			else
+				return
 			end
 
         	for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
-				if Pet.Value.Data.Attacking.Value ~= nil then
-					if ToggleAutoAttack == true then
-						continue
-					else
-						return
-					end
+				if Pet.Value.Data.Attacking.Value ~= nil and ToggleAutoAttack == true then
+					continue
+				elseif Pet.Value.Data.Attacking.Value ~= nil and ToggleAutoAttack == false then
+					return
 				end
 			end
 
