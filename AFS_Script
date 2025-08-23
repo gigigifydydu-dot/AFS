@@ -90,11 +90,9 @@ local AutoAttack = Tab:CreateToggle({
 
 					if distance < 150 then
 						for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
-							if Pet.Value.Data.Attacking.Value == nil and Pet.Value.Data.ServerAttacking.Value == nil then
-								print("Call pet")
-								SendPetBindable:Fire(enemy)
-								SendPetEvent:FireServer(Pet.Value, enemy, i)
-							end
+							print("Call pet")
+							SendPetBindable:Fire(enemy)
+							SendPetEvent:FireServer(Pet.Value, enemy, i)
 						end
 					end
 				end
