@@ -58,6 +58,7 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("Main", "brain")
 
+local ToggleAutoAttack = false
 local AutoAttack = Tab:CreateToggle({
    Name = "Auto Attack",
    CurrentValue = false,
@@ -65,7 +66,8 @@ local AutoAttack = Tab:CreateToggle({
    Callback = function(Value)
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
-		while Value == true do
+		ToggleAutoAttack = Value
+		while ToggleAutoAttack == true do
 			wait(0.1)
 			if #TargetWorldEnemy:GetChildren() == 0 then
 				if Value == true then
