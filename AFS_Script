@@ -4,7 +4,6 @@ local player = game.Players.LocalPlayer
 local char = player.Character or player.CharacterAdded:Wait()
 local HumanoidRootPartChar = char:WaitForChild("HumanoidRootPart")
 local ID_NAME = player.Name
-local ID_WORLD = player:WaitForChild("World").Value
 
 local ChoseTargetWorld = "All"
 
@@ -15,7 +14,7 @@ local BindableFolder = REP:WaitForChild("Bindable")
 local SendPetEvent = RemoteFolder:WaitForChild("SendPet")
 local SendPetBindable = BindableFolder:WaitForChild("SendPet")
 
-local TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(ID_WORLD).Enemies
+local TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(player:WaitForChild("World").Value).Enemies
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
@@ -69,7 +68,7 @@ local AutoAttack = Tab:CreateToggle({
 		ToggleAutoAttack = Value
 		while ToggleAutoAttack == true do
 			wait(0.1)
-			ID_WORLD = player.World.Value
+			TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(player:WaitForChild("World").Value).Enemies
 			if #TargetWorldEnemy:GetChildren() == 0 then
 				if Value == true then
 					continue
