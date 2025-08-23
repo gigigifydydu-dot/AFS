@@ -76,11 +76,12 @@ local AutoAttack = Tab:CreateToggle({
 			end
 
         	for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
-				if Pet.Value.Data.Attacking.Value ~= nil or Pet.Value.Data.ServerAttacking.Value ~= nil and ToggleAutoAttack == true then
-					print("Call Back!")
+				local Target = Pet.Value.Data.Attacking.Value
+				local ServerTarget = Pet.Value.Data.ServerAttacking.Value
+
+				if Target ~= nil and Server Target ~= nil then
+					print("ACCEPT")
 					continue
-				elseif Pet.Value.Data.Attacking.Value ~= nil or Pet.Value.Data.ServerAttacking.Value ~= nil and ToggleAutoAttack == false then
-					return
 				end
 			end
 
