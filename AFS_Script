@@ -70,7 +70,7 @@ local AutoAttack = Tab:CreateToggle({
 			wait(0.1)
 			TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(player:WaitForChild("World").Value).Enemies
 			if #TargetWorldEnemy:GetChildren() == 0 then
-				if Value == true then
+				if ToggleAutoAttack == true then
 					continue
 				else
 					return
@@ -79,7 +79,7 @@ local AutoAttack = Tab:CreateToggle({
 
         	for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
 				if Pet.Value.Data.Attacking.Value ~= nil then
-					if Value == true then
+					if ToggleAutoAttack == true then
 						continue
 					else
 						return
