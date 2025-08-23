@@ -69,20 +69,11 @@ local AutoAttack = Tab:CreateToggle({
 		while ToggleAutoAttack == true do
 			wait(0.1)
 			TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(player:WaitForChild("World").Value).Enemies
+
 			if #TargetWorldEnemy:GetChildren() == 0 and ToggleAutoAttack == true then
 				continue
 			elseif #TargetWorldEnemy:GetChildren() == 0 and ToggleAutoAttack == false then
 				return
-			end
-
-        	for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
-				local Target = Pet.Value.Data.Attacking.Value
-				local ServerTarget = Pet.Value.Data.ServerAttacking.Value
-
-				if Target ~= nil and Server Target ~= nil then
-					print("ACCEPT")
-					continue
-				end
 			end
 
 			for i, enemy in pairs(TargetWorldEnemy:GetChildren()) do
@@ -91,7 +82,6 @@ local AutoAttack = Tab:CreateToggle({
 
 					if distance < 150 then
 						for Id, Pet in ipairs(player:FindFirstChild("Pets"):GetChildren()) do
-							print("Call pet")
 							SendPetBindable:Fire(enemy)
 							SendPetEvent:FireServer(Pet.Value, enemy, i)
 						end
