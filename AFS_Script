@@ -71,7 +71,7 @@ local AutoAttack = Tab:CreateToggle({
 			TargetWorldEnemy = game.Workspace.Worlds:FindFirstChild(player:WaitForChild("World").Value).Enemies
 			if #TargetWorldEnemy:GetChildren() == 0 and ToggleAutoAttack == true then
 				continue
-			else
+			elseif #TargetWorldEnemy:GetChildren() == 0 and ToggleAutoAttack == false then
 				return
 			end
 
